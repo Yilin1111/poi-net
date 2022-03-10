@@ -1,0 +1,24 @@
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+python run_squad.py \
+  --do_lower_case \
+  --do_train \
+  --do_eval \
+  --overwrite_output \
+  --version_2_with_negative \
+  --eval_all_checkpoints \
+  --per_gpu_eval_batch_size=48 \
+  --logging_steps 20 \
+  --max_seq_length 512 \
+  --model_type albert \
+  --model_name_or_path albert-xxlarge-v2 \
+  --train_file ../squad_data/train-v2.0.json \
+  --predict_file ../squad_data/dev-v2.0.json \
+  --learning_rate 1e-5 \
+  --num_train_epochs 2 \
+  --output_dir albert_xxlarge_squad2_lr1e5_ep2 \
+  --per_gpu_train_batch_size=3 \
+  --gradient_accumulation_steps 1 \
+  --doc_stride 128 \
+  --warmup_steps 1088 \
+  --save_steps 4000 \
+  --fp16
